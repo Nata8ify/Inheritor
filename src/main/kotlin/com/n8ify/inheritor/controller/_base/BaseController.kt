@@ -1,5 +1,6 @@
 package com.n8ify.inheritor.controller._base
 
+import com.n8ify.inheritor.constant.LogLevel.*
 import com.n8ify.inheritor.service.LoggerService
 import org.springframework.beans.factory.annotation.Autowired
 

@@ -1,8 +1,6 @@
-package com.n8ify.inheritor.model.domain;
+package com.n8ify.inheritor.model.misc;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.Enumeration;
 
 /** Provide briefly information of incoming request with some <u>custom attributes</u>.
  * <br/>

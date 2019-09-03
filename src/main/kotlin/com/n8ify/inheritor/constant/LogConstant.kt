@@ -1,13 +1,10 @@
 package com.n8ify.inheritor.constant
 
-object LogConstant {
+enum class LogLevel {
+    TRACE, DEBUG, INFO, WARN, ERROR, FETAL
+}
 
-    const val LEVEL_TRACE = "TRACE"
-    const val LEVEL_DEBUG = "DEBUG"
-    const val LEVEL_INFO  = "INFO"
-    const val LEVEL_WARN  = "WARN"
-    const val LEVEL_ERROR = "ERROR"
-    const val LEVEL_FETAL = "FETAL"
+object LogConstant {
 
     const val TYPE_ACCESS = "ACCESS"
     const val TYPE_SYSTEM = "SYSTEM"

@@ -1,7 +1,7 @@
 package com.n8ify.inheritor.configuration
 
 import com.n8ify.inheritor.constant.PropertiesConstant.REQUEST_DESCRIPTION_ID_PREFIX
-import com.n8ify.inheritor.model.domain.RequestDescription
+import com.n8ify.inheritor.model.misc.RequestDescription
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

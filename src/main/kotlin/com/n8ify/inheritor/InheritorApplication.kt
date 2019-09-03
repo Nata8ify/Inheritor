@@ -4,9 +4,6 @@ import com.n8ify.inheritor.constant.PropertiesConstant.BUILD_NAME
 import com.n8ify.inheritor.constant.PropertiesConstant.BUILD_TIMESTAMP
 import com.n8ify.inheritor.constant.PropertiesConstant.BUILD_VERSION
 import com.n8ify.inheritor.constant.PropertiesConstant.PROFILES_ACTIVE
-import com.n8ify.inheritor.model.domain.RequestDescription
-import com.n8ify.inheritor.service.LoggerService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication

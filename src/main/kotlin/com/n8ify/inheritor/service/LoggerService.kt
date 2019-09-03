@@ -1,7 +1,9 @@
 package com.n8ify.inheritor.service
 
 import com.n8ify.inheritor.constant.LogConstant
-import com.n8ify.inheritor.model.domain.RequestDescription
+import com.n8ify.inheritor.constant.LogLevel
+import com.n8ify.inheritor.constant.LogLevel.*
+import com.n8ify.inheritor.model.misc.RequestDescription
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
@@ -28,7 +30,7 @@ class LoggerService {
     /**
      * Logger for logging information on <b>"Presentation layer"</b> like <b>Controller</b>.
      * */
-    fun accessLogger(tag: String, message: String, input: Any? = null, output: Any? = null, level: String, vararg remarks: Any) {
+    fun accessLogger(tag: String, message: String, input: Any? = null, output: Any? = null, level: LogLevel, vararg remarks: Any) {
 
         // Step [1] : Create a log body.
         val body = StringBuilder().apply {
@@ -48,11 +50,11 @@ class LoggerService {
         // Step [2] : Log finale body by level.
         when (level) {
 
-            LogConstant.LEVEL_TRACE -> accessLogger.trace(body)
-            LogConstant.LEVEL_DEBUG -> accessLogger.debug(body)
-            LogConstant.LEVEL_INFO -> accessLogger.info(body)
-            LogConstant.LEVEL_WARN -> accessLogger.warn(body)
-            LogConstant.LEVEL_ERROR -> accessLogger.error(body)
+            TRACE -> accessLogger.trace(body)
+            DEBUG -> accessLogger.debug(body)
+            INFO  -> accessLogger.info(body)
+            WARN  -> accessLogger.warn(body)
+            ERROR -> accessLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
 
@@ -63,7 +65,7 @@ class LoggerService {
     /** Logger for logging information on <b>"Service layer"</b> or <b>"Data layer"</b>. Useful on
      * * Service layer (@Service)
      * * Data layer (@Repository) for non-query logging. */
-    fun systemLogger(tag: String, message: String, result: Any? = null, level: String, vararg remarks: Any) {
+    fun systemLogger(tag: String, message: String, result: Any? = null, level: LogLevel, vararg remarks: Any) {
 
         // Step [1] : Create a log body.
         val body = StringBuilder().apply {
@@ -82,18 +84,18 @@ class LoggerService {
         // Step [2] : Log finale body by level.
         when (level) {
 
-            LogConstant.LEVEL_TRACE -> systemLogger.trace(body)
-            LogConstant.LEVEL_DEBUG -> systemLogger.debug(body)
-            LogConstant.LEVEL_INFO -> systemLogger.info(body)
-            LogConstant.LEVEL_WARN -> systemLogger.warn(body)
-            LogConstant.LEVEL_ERROR -> systemLogger.error(body)
+            TRACE -> systemLogger.trace(body)
+            DEBUG -> systemLogger.debug(body)
+            INFO  -> systemLogger.info(body)
+            WARN  -> systemLogger.warn(body)
+            ERROR -> systemLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
 
         }
     }
 
-    fun queryLogger(tag: String, message: String, query: String, mapParams: MapSqlParameterSource? = null, listParams: List<Any?>? = null, level: String, vararg remarks: Any) {
+    fun queryLogger(tag: String, message: String, query: String, mapParams: MapSqlParameterSource? = null, level: LogLevel, vararg remarks: Any) {
 
         // Step [1] : Create a log body.
         val body = StringBuilder().apply {
@@ -102,7 +104,7 @@ class LoggerService {
             this@apply.append("[$logId :: $tag] >> ")
                     .append("[Message = $message], ")
                     .append("[SQL = $query], ")
-            this@apply.append("[Parameter(s) = ${mapParams?.toString() ?: listParams.toString()}], ")
+            this@apply.append("[Parameter(s) = ${mapParams?.values.toString()}], ")
 
             if (remarks.isNotEmpty()) {
                 this@apply.append("\n[Remark = ${Arrays.asList(*remarks)}]")
@@ -113,11 +115,11 @@ class LoggerService {
         // Step [2] : Log finale body by level.
         when (level) {
 
-            LogConstant.LEVEL_TRACE -> queryLogger.trace(body)
-            LogConstant.LEVEL_DEBUG -> queryLogger.debug(body)
-            LogConstant.LEVEL_INFO -> queryLogger.info(body)
-            LogConstant.LEVEL_WARN -> queryLogger.warn(body)
-            LogConstant.LEVEL_ERROR -> queryLogger.error(body)
+            TRACE -> queryLogger.trace(body)
+            DEBUG -> queryLogger.debug(body)
+            INFO  -> queryLogger.info(body)
+            WARN  -> queryLogger.warn(body)
+            ERROR -> queryLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
 
@@ -127,7 +129,7 @@ class LoggerService {
     /**
      * Logger for logging information for an external API requesting.
      * */
-    fun accessExternalLogger(tag: String, message: String, request: Any? = null, response: Any? = null, level: String, vararg remarks: Any) {
+    fun accessExternalLogger(tag: String, message: String, request: Any? = null, response: Any? = null, level: LogLevel, vararg remarks: Any) {
 
         // Step [1] : Create a log body.
         val body = StringBuilder().apply {
@@ -153,11 +155,11 @@ class LoggerService {
         // Step [2] : Log finale body by level.
         when (level) {
 
-            LogConstant.LEVEL_TRACE -> accessLogger.trace(body)
-            LogConstant.LEVEL_DEBUG -> accessLogger.debug(body)
-            LogConstant.LEVEL_INFO -> accessLogger.info(body)
-            LogConstant.LEVEL_WARN -> accessLogger.warn(body)
-            LogConstant.LEVEL_ERROR -> accessLogger.error(body)
+            TRACE -> externalLogger.trace(body)
+            DEBUG -> externalLogger.debug(body)
+            INFO  -> externalLogger.info(body)
+            WARN  -> externalLogger.warn(body)
+            ERROR -> externalLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
 
