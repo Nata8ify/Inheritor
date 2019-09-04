@@ -24,11 +24,17 @@ class UserDaoImpl : BaseDao(), UserDao {
 
     override fun findUserByUsername(username: String): User? {
 
+//        val sql = StringBuilder().apply {
+//            this@apply.append("SELECT $FIELD_USERID, $FIELD_USERNAME, $FIELD_PASSWORD, $FIELD_DEVICE_ID, $FIELD_ROLE")
+//                    .append(" FROM $TABLE_USER")
+//                    .append(" WHERE $FIELD_USERNAME = :$FIELD_USERNAME")
+//        }.toString()
+
         val sql = SQLStatementBuilder.builder()
                 .select(TABLE_USER, FIELD_USERID, FIELD_USERNAME, FIELD_PASSWORD, FIELD_DEVICE_ID, FIELD_ROLE)
                 .from(TABLE_USER)
                 .where()
-                .equals(FIELD_USERNAME, username, true)
+                .equals(FIELD_USERNAME, username)
                 .buildQuery()
 
         val params = SQLParameterBuilder.builder(mutableMapOf(Pair(FIELD_USERNAME, username)))

@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import java.security.SecureRandom
 import java.util.*
 import javax.servlet.http.HttpServletRequest
 
@@ -29,6 +31,13 @@ class BeanConfiguration {
         }
     }
 
+    /** Provide <i>BCryptPasswordEncoder</i> bean for hashing user password.  */
+    @Bean
+    fun provideBCryptPasswordEncoder() : BCryptPasswordEncoder {
+        val strongRandom = SecureRandom.getInstance("NativePRNG")
+        return BCryptPasswordEncoder(13, strongRandom)
+    }
+
     /**
      * Let @JsonFormat know the time zone by using default system timezone.
      * @param objectMapper autowired objectMapper.
@@ -38,5 +47,6 @@ class BeanConfiguration {
         objectMapper.setTimeZone(TimeZone.getDefault())
         logger.info("Default object mapper's time zone = ${TimeZone.getDefault()}")
     }
+
 
 }
