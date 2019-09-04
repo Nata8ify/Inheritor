@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Lazy
 import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -22,6 +23,7 @@ class BeanConfiguration {
 
     /** Provide a default bean using for identifying an incoming request or logging purpose.  */
     @Bean
+    @Lazy
     @Scope(scopeName = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
     fun provideRequestDescription(@Value(REQUEST_DESCRIPTION_ID_PREFIX) prefix : String, request : HttpServletRequest) : RequestDescription {
         val id = "$prefix${System.currentTimeMillis()}${UUID.randomUUID()}"

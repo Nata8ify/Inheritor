@@ -28,7 +28,7 @@ class LogTimeUsage {
 
         val timeUsage =  System.currentTimeMillis().minus(start).toFloat().div(1000)
 
-        logger.systemLogger(proceedingJoinPoint.signature.declaringType.simpleName , "[${requestDescription.request.servletPath}] Total time usages = $timeUsage milliseconds", level = INFO)
+        logger.systemLogger(proceedingJoinPoint.signature.declaringType.simpleName , "<${requestDescription.request.servletPath}> Total time usages = $timeUsage milliseconds", level = INFO)
 
         return proceededObject
     }

@@ -44,4 +44,9 @@ class SQLParameterBuilder {
         }
     }
 
+    protected class Builder(){
+
+
+    }
+
 }
