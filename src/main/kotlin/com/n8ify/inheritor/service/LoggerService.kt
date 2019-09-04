@@ -36,7 +36,7 @@ class LoggerService {
         val body = StringBuilder().apply {
 
             val logId = requestDescription.id
-            this@apply.append("[$logId :: $tag] >> ")
+            this@apply.append("[$logId::$tag][${requestDescription.request.servletPath}] >> ")
                     .append("[Message = $message]")
                     .append(", [Input = $input]")
                     .append(", [Output = $output]")
@@ -71,7 +71,7 @@ class LoggerService {
         val body = StringBuilder().apply {
 
             val logId = requestDescription.id
-            this@apply.append("[$logId :: $tag] >> ")
+            this@apply.append("[$logId::$tag] >> ")
                     .append("[Message = $message]")
 
             result?.let {
@@ -104,7 +104,7 @@ class LoggerService {
         val body = StringBuilder().apply {
 
             val logId = requestDescription.id
-            this@apply.append("[$logId :: $tag] >> ")
+            this@apply.append("[$logId::$tag] >> ")
                     .append("[Message = $message]")
                     .append(", [SQL = $query]")
             this@apply.append(", [Parameter(s) = ${mapParams?.values.toString()}]")
@@ -138,7 +138,7 @@ class LoggerService {
         val body = StringBuilder().apply {
 
             val logId = requestDescription.id
-            this@apply.append("[$logId :: $tag] >> ")
+            this@apply.append("[$logId::$tag] >> ")
                     .append("[Message = $message]")
 
             if (request != null) {
@@ -179,7 +179,7 @@ class LoggerService {
         val body = StringBuilder().apply {
 
             val logId = requestDescription.id
-            this@apply.append("[$logId :: $tag] >> ")
+            this@apply.append("[$logId::$tag] >> ")
                     .append("[Message = $message], ")
 
             if (remarks.isNotEmpty()) {

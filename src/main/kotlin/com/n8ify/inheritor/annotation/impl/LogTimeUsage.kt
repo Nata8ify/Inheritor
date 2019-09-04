@@ -1,4 +1,4 @@
-package com.n8ify.inheritor.component.aop
+package com.n8ify.inheritor.annotation.impl
 
 import com.n8ify.inheritor.constant.LogLevel.*
 import com.n8ify.inheritor.model.misc.RequestDescription
@@ -8,7 +8,6 @@ import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Aspect
 @Component
