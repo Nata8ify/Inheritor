@@ -1,7 +1,5 @@
 package com.n8ify.inheritor.utils
 
-import java.lang.StringBuilder
-
 /** only single table is supported for now. */
 class SQLStatementBuilder {
 

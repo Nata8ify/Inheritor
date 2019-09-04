@@ -1,6 +1,6 @@
 package com.n8ify.inheritor.annotation.impl
 
-import com.n8ify.inheritor.constant.LogLevel.*
+import com.n8ify.inheritor.constant.LogLevel.INFO
 import com.n8ify.inheritor.model.misc.RequestDescription
 import com.n8ify.inheritor.service.LoggerService
 import org.aspectj.lang.ProceedingJoinPoint

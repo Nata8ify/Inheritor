@@ -2,8 +2,6 @@ package com.n8ify.inheritor.dao._base
 
 import com.n8ify.inheritor.constant.LogLevel.*
 import com.n8ify.inheritor.service.LoggerService
-import com.n8ify.inheritor.utils.SQLParameterBuilder
-import com.n8ify.inheritor.utils.SQLStatementBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
@@ -15,7 +13,7 @@ import javax.sql.DataSource
 /** Base class providing support component or convenient function for DAO class. */
 abstract class BaseDao : NamedParameterJdbcDaoSupport() {
 
-    var TAG = BaseDao::class.java.simpleName
+    protected var TAG = BaseDao::class.java.simpleName
 
     @Autowired
     lateinit var mDataSource: DataSource
