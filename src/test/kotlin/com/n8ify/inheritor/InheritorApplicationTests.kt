@@ -1,5 +1,6 @@
 package com.n8ify.inheritor
 
+import com.n8ify.inheritor.annotation.LogTimeUsage
 import com.n8ify.inheritor.constant.LogLevel
 import com.n8ify.inheritor.dao.UserDao
 import com.n8ify.inheritor.dao.impl.UserDaoImpl
@@ -23,6 +24,7 @@ class InheritorApplicationTests {
     lateinit var logger : LoggerService
 
 	@Test
+    @LogTimeUsage
 	fun contextLoads() {
         logger.systemLogger(TAG, "Result", userDao.findUserByUsername("shuz1ify"), LogLevel.INFO)
 	}

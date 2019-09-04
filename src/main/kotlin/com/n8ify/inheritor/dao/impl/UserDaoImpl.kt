@@ -4,6 +4,7 @@ import com.n8ify.inheritor.constant.LogLevel
 import com.n8ify.inheritor.dao.UserDao
 import com.n8ify.inheritor.dao._base.BaseDao
 import com.n8ify.inheritor.model.entity.User
+import com.n8ify.inheritor.utils.SQLParameterBuilder
 import com.n8ify.inheritor.utils.SQLStatementBuilder
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
@@ -23,22 +24,15 @@ class UserDaoImpl : BaseDao(), UserDao {
 
     override fun findUserByUsername(username: String): User? {
 
-//        val sql = StringBuilder().apply {
-//            this@apply.append("SELECT $FIELD_USERID, $FIELD_USERNAME, $FIELD_PASSWORD, $FIELD_DEVICE_ID, $FIELD_ROLE")
-//                    .append(" FROM $TABLE_USER")
-//                    .append(" WHERE $FIELD_USERNAME = :$FIELD_USERNAME")
-//        }.toString()
-
         val sql = SQLStatementBuilder.builder()
-                .select(FIELD_USERID, FIELD_USERNAME, FIELD_PASSWORD, FIELD_DEVICE_ID, FIELD_ROLE)
+                .select(TABLE_USER, FIELD_USERID, FIELD_USERNAME, FIELD_PASSWORD, FIELD_DEVICE_ID, FIELD_ROLE)
                 .from(TABLE_USER)
                 .where()
-                .equals(FIELD_USERNAME, null, true)
+                .equals(FIELD_USERNAME, username, true)
                 .buildQuery()
 
-        val params = MapSqlParameterSource().apply {
-            this@apply.addValue(FIELD_USERNAME, username)
-        }
+        val params = SQLParameterBuilder.builder(mutableMapOf(Pair(FIELD_USERNAME, username)))
+                .buildParams()
 
         loggerService.queryLogger(TAG, "findUserByUsername", sql, params, LogLevel.INFO)
 
