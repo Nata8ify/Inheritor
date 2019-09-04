@@ -1,5 +1,6 @@
 package com.n8ify.inheritor.controller
 
+import com.n8ify.inheritor.annotation.LogTimeUsage
 import com.n8ify.inheritor.service.LoggerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,12 +14,13 @@ class HomeController {
     lateinit var loggerService: LoggerService
 
     @GetMapping("/testError0")
+    @LogTimeUsage
     fun getSome(): Int {
         try {
             return 9 / 0
         } catch (e: Exception) {
             loggerService.printStacktraceErrorLogger("", "Error By Divide Zer0", e, "Force divide by zero")
         }
-        return 1010
+        return 1_0_1_0
     }
 }

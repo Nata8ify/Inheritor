@@ -22,7 +22,6 @@ public class RequestDescription {
         this.id = id;
     }
 
-
     public HttpServletRequest getRequest() {
         return request;
     }

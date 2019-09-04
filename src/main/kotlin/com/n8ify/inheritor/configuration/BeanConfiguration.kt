@@ -1,5 +1,6 @@
 package com.n8ify.inheritor.configuration
 
+import com.n8ify.inheritor.constant.CharacterConstant
 import com.n8ify.inheritor.constant.PropertiesConstant.REQUEST_DESCRIPTION_ID_PREFIX
 import com.n8ify.inheritor.model.misc.RequestDescription
 import org.slf4j.LoggerFactory
@@ -23,7 +24,8 @@ class BeanConfiguration {
     fun provideRequestDescription(@Value(REQUEST_DESCRIPTION_ID_PREFIX) prefix : String, request : HttpServletRequest) : RequestDescription {
         val id = "$prefix${System.currentTimeMillis()}${UUID.randomUUID()}"
         return RequestDescription().apply {
-            this@apply.id = id
+            this@apply.id = id.replace(CharacterConstant.DASH, CharacterConstant.EMPTY).toUpperCase()
+            this@apply.request = request
         }
     }
 

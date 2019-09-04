@@ -37,9 +37,9 @@ class LoggerService {
 
             val logId = requestDescription.id
             this@apply.append("[$logId :: $tag] >> ")
-                    .append("[Message = $message] : ")
-                    .append("[Input = $input] : ")
-                    .append("[Output = $output]")
+                    .append("[Message = $message]")
+                    .append(", [Input = $input]")
+                    .append(", [Output = $output]")
 
             if (remarks.isNotEmpty()) {
                 this@apply.append("\n[Remark = ${Arrays.asList(*remarks)}]")
@@ -52,8 +52,8 @@ class LoggerService {
 
             TRACE -> accessLogger.trace(body)
             DEBUG -> accessLogger.debug(body)
-            INFO  -> accessLogger.info(body)
-            WARN  -> accessLogger.warn(body)
+            INFO -> accessLogger.info(body)
+            WARN -> accessLogger.warn(body)
             ERROR -> accessLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
@@ -72,8 +72,11 @@ class LoggerService {
 
             val logId = requestDescription.id
             this@apply.append("[$logId :: $tag] >> ")
-                    .append("[Message = $message], ")
-                    .append("[result = $result], ")
+                    .append("[Message = $message]")
+
+            result?.let {
+                this@apply.append(", [Result = $result]")
+            }
 
             if (remarks.isNotEmpty()) {
                 this@apply.append("\n[Remark = ${Arrays.asList(*remarks)}]")
@@ -86,8 +89,8 @@ class LoggerService {
 
             TRACE -> systemLogger.trace(body)
             DEBUG -> systemLogger.debug(body)
-            INFO  -> systemLogger.info(body)
-            WARN  -> systemLogger.warn(body)
+            INFO -> systemLogger.info(body)
+            WARN -> systemLogger.warn(body)
             ERROR -> systemLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
@@ -102,9 +105,9 @@ class LoggerService {
 
             val logId = requestDescription.id
             this@apply.append("[$logId :: $tag] >> ")
-                    .append("[Message = $message], ")
-                    .append("[SQL = $query], ")
-            this@apply.append("[Parameter(s) = ${mapParams?.values.toString()}], ")
+                    .append("[Message = $message]")
+                    .append(", [SQL = $query]")
+            this@apply.append(", [Parameter(s) = ${mapParams?.values.toString()}]")
 
             if (remarks.isNotEmpty()) {
                 this@apply.append("\n[Remark = ${Arrays.asList(*remarks)}]")
@@ -117,8 +120,8 @@ class LoggerService {
 
             TRACE -> queryLogger.trace(body)
             DEBUG -> queryLogger.debug(body)
-            INFO  -> queryLogger.info(body)
-            WARN  -> queryLogger.warn(body)
+            INFO -> queryLogger.info(body)
+            WARN -> queryLogger.warn(body)
             ERROR -> queryLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
@@ -136,14 +139,14 @@ class LoggerService {
 
             val logId = requestDescription.id
             this@apply.append("[$logId :: $tag] >> ")
-                    .append("[Message = $message] : ")
+                    .append("[Message = $message]")
 
             if (request != null) {
-                this@apply.append("[Request = $request] : ")
+                this@apply.append(", [Request = $request]")
             }
 
             if (request != null) {
-                this@apply..append("[Response = $response]")
+                this@apply..append(", [Response = $response]")
             }
 
             if (remarks.isNotEmpty()) {
@@ -157,8 +160,8 @@ class LoggerService {
 
             TRACE -> externalLogger.trace(body)
             DEBUG -> externalLogger.debug(body)
-            INFO  -> externalLogger.info(body)
-            WARN  -> externalLogger.warn(body)
+            INFO -> externalLogger.info(body)
+            WARN -> externalLogger.warn(body)
             ERROR -> externalLogger.error(body)
 
             else -> throw IllegalArgumentException("$ERROR_INVALID_LOG_LEVEL ($level)")
