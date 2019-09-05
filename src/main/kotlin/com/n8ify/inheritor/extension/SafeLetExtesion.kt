@@ -32,3 +32,14 @@ fun <A, B> T(first: A?, second: B?): Pair<A, B>? =
 fun <A, B, C> T(first: A?, second: B?, third: C?): Triple<A, B, C>? =
         if (first == null || second == null || third == null) null
         else Triple(first, second, third)
+
+fun main(args: Array<String>) {
+    val a : String? = "It's A"
+    val b : String? = "It's B"
+
+    T<String, String>(a, b)?.let {
+        println("A, B is not null")
+    } ?: run {
+        println("A or B is null")
+    }
+}

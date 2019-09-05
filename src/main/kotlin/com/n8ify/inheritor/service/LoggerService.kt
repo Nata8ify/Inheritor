@@ -154,7 +154,7 @@ class LoggerService {
 
 
             response?.let {
-                this@apply..append(", [Response = $it]")
+                this@apply.append(", [Response = $it]")
             }
 
             if (remarks.isNotEmpty()) {

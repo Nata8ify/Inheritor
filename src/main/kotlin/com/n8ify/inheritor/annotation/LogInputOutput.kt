@@ -1,7 +1,6 @@
-package com.n8ify.inheritor.annotation.impl;
+package com.n8ify.inheritor.annotation;
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.n8ify.inheritor.annotation.LogInputOutput
 import com.n8ify.inheritor.constant.LogLevel
 import com.n8ify.inheritor.model.misc.RequestDescription
 import com.n8ify.inheritor.model.rest.request._base.BaseRequest
@@ -11,12 +10,18 @@ import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.reflect.MethodSignature
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.json.GsonJsonParser
 import org.springframework.stereotype.Component
+
+/**
+ * Annotate a controller's api interface class for logging input, output and time usage detail.
+ * */
+@Retention(AnnotationRetention.RUNTIME)
+@Target(AnnotationTarget.FUNCTION)
+annotation class LogInputOutput(val asJsonInput : Boolean = false, val asJsonOutput: Boolean = false)
 
 @Aspect
 @Component
-public class LogInputOutput {
+public class LogInputOutputImpl {
 
     @Autowired
     lateinit var requestDescription: RequestDescription
