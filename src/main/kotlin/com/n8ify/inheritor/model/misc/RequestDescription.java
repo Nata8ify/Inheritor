@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 /** Provide briefly information of incoming request with some <u>custom attributes</u>.
  * <br/>
  * <br/><b>Question</b> : What is custom attribute?
- * <br/><b>Answer</b> : An attribute which <i>HttpServletRequest</i> doesn't provided to you, But you may need these custom attributes to identified somethings or make them existed for some purposes.*/
+ * <br/><b>Answer</b> : An attribute which <i>HttpServletRequest</i> doesn't provided to you, But you may need these custom attributes to identified somethings or make them existed for some purposes.
+ * */
 public class RequestDescription {
 
     /** Request id for tagging any incoming request, Similar to session id but more way to define. */

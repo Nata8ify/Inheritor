@@ -37,8 +37,16 @@ class LoggerService {
             val logId = requestDescription.id
             this@apply.append("[$logId::$tag][${requestDescription.request.servletPath}] >> ")
                     .append("[Message = $message]")
-                    .append(", [Input = $input]")
-                    .append(", [Output = $output]")
+
+            input?.let {
+                this@apply.append(", [Input = $it]")
+            }
+
+            output?.let {
+                this@apply.append(", [Output = $it]")
+            }
+            if(output != null){
+            }
 
             if (remarks.isNotEmpty()) {
                 this@apply.append("\n[Remark = ${Arrays.asList(*remarks)}]")
@@ -140,12 +148,13 @@ class LoggerService {
             this@apply.append("[$logId::$tag] >> ")
                     .append("[Message = $message]")
 
-            if (request != null) {
-                this@apply.append(", [Request = $request]")
+            request?.let {
+                this@apply.append(", [Request = $it]")
             }
 
-            if (request != null) {
-                this@apply..append(", [Response = $response]")
+
+            response?.let {
+                this@apply..append(", [Response = $it]")
             }
 
             if (remarks.isNotEmpty()) {

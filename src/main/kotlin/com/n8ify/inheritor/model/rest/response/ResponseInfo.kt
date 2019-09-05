@@ -1,4 +1,4 @@
-package com.n8ify.inheritor.model.rest.response._base
+package com.n8ify.inheritor.model.rest.response
 
 import com.n8ify.inheritor.constant.CharacterConstant
 import java.util.*

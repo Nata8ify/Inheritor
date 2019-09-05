@@ -2,7 +2,7 @@ package com.n8ify.inheritor.controller.advise
 
 import com.n8ify.inheritor.exception._base.BaseException
 import com.n8ify.inheritor.model.misc.RequestDescription
-import com.n8ify.inheritor.model.rest.response._base.ResponseInfo
+import com.n8ify.inheritor.model.rest.response.ResponseInfo
 import com.n8ify.inheritor.service.LoggerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -36,7 +36,7 @@ class ErrorControllerAdvice {
                 requestDescription.id
                 , ResponseInfo.STATUS_ERROR
                 , ResponseInfo.DEFAULT_CODE_ABNORMAL
-                , e.message?:e.localizedMessage)
+                , e.message ?: e.localizedMessage)
     }
 
 
