@@ -2,7 +2,9 @@ package com.n8ify.inheritor.utils
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 
+
 /** Alternatively builder class for generating <i>MapSqlParameterSource</i>.  */
+@Deprecated("Suggest to implement the normal MapSqlParameterSource.")
 class SQLParameterBuilder {
 
 

@@ -29,11 +29,13 @@ abstract class BaseDao : NamedParameterJdbcDaoSupport() {
     lateinit var loggerService: LoggerService
 
 
-    /** Helper method for log query statement and its parameter(s). */
-    fun logQuery(tag : String, message : String, sql : String, params : MapSqlParameterSource, vararg remark : String) {
-        loggerService.queryLogger(tag, message, sql, params, DEBUG, remark)
+    /** Convenient Function **/
+    /** Generate a flexible <i>IN</i> body by provided parameters on runtime.*/
+    fun constructRuntimeIN(vararg args : Any) : String {
+        return " IN (${args}) "
     }
 
+    /** Convenient (Extension) Function **/
     /** Custom extension of <i>namedParameterJdbcTemplate.query(sql, params, mapper)</i> which always returns the first member from its result.
      * @param sql SQL Statement
      * @param params Statement parameters
@@ -59,6 +61,10 @@ abstract class BaseDao : NamedParameterJdbcDaoSupport() {
 
     }
 
-
+    /* Miscellenious Function */
+    /** Helper method for log query statement and its parameter(s). */
+    fun logQuery(tag : String, message : String, sql : String, params : MapSqlParameterSource, vararg remark : String) {
+        loggerService.queryLogger(tag, message, sql, params, DEBUG, remark)
+    }
 
 }

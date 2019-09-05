@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotate
+ * Annotate a controller's api interface class for logging input, output and time usage detail.
  * */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

@@ -1,6 +1,7 @@
 package com.n8ify.inheritor.utils
 
 /** only single table is supported for now. */
+@Deprecated("Some operation may not be functioned... (General \"SELECT .. FROM .. WHERE ..\" is fine for implementing.)")
 class SQLStatementBuilder {
 
     private val statement by lazy { StringBuilder() }
