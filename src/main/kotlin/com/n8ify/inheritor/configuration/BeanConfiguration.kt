@@ -29,13 +29,6 @@ class BeanConfiguration {
         }
     }
 
-    /** Provide <i>BCryptPasswordEncoder</i> bean for hashing user password.  */
-    @Bean
-    fun provideBCryptPasswordEncoder() : BCryptPasswordEncoder {
-        val strongRandom = SecureRandom.getInstance("NativePRNG")
-        return BCryptPasswordEncoder(13, strongRandom)
-    }
-
     /**
      * Let @JsonFormat know the time zone by using default system timezone.
      * @param objectMapper autowired objectMapper.
