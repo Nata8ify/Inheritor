@@ -4,8 +4,6 @@ import com.n8ify.inheritor.constant.LogLevel
 import com.n8ify.inheritor.dao.UserDao
 import com.n8ify.inheritor.dao._base.BaseDao
 import com.n8ify.inheritor.model.entity.User
-import com.n8ify.inheritor.utils.SQLParameterBuilder
-import com.n8ify.inheritor.utils.SQLStatementBuilder
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.stereotype.Repository

@@ -6,13 +6,10 @@ import com.n8ify.inheritor.model.rest.request._base.BaseRequest
 import com.n8ify.inheritor.model.rest.response._base.BaseResponse
 import com.n8ify.inheritor.service.LoggerService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
+import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
-import javax.validation.constraints.Max
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.Pattern
 
 @RestController
 class HomeController {

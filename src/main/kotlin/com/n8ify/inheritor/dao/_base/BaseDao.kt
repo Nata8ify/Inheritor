@@ -1,5 +1,6 @@
 package com.n8ify.inheritor.dao._base
 
+import com.n8ify.inheritor.constant.LogLevel
 import com.n8ify.inheritor.constant.LogLevel.*
 import com.n8ify.inheritor.service.LoggerService
 import org.springframework.beans.factory.annotation.Autowired
@@ -7,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
+import java.util.*
 import javax.annotation.PostConstruct
 import javax.sql.DataSource
 
@@ -17,6 +19,11 @@ abstract class BaseDao : NamedParameterJdbcDaoSupport() {
 
     @Autowired
     lateinit var mDataSource: DataSource
+
+    protected val NO_RECORD_UPDATE by lazy { 0 }
+
+    protected val currentDate: Date
+        get() = Date(System.currentTimeMillis())
 
     /** Initial a data source for any time the bean have been instantiated. */
     @PostConstruct
@@ -32,9 +39,18 @@ abstract class BaseDao : NamedParameterJdbcDaoSupport() {
     /** Convenient Function **/
     /** Generate <i>MapSqlParameterSource</i> through convenient map shorthand function.
      */
-    fun mapSqlParameterSourceOf(vararg param : Pair<String, Any?>) : MapSqlParameterSource {
+    fun mapSqlParameterSourceOf(vararg params: Pair<String, Any?>, mustNotNull : Boolean = false): MapSqlParameterSource {
+
+        if(mustNotNull){
+            params.iterator().forEach {
+                if(it.second == null){
+
+                }
+            }
+        }
+
         return MapSqlParameterSource().apply {
-            param.forEach {param ->
+            params.forEach { param ->
                 this@apply.addValue(param.first, param.second)
             }
         }
@@ -68,8 +84,8 @@ abstract class BaseDao : NamedParameterJdbcDaoSupport() {
 
     /* Miscellenious Function */
     /** Helper method for log query statement and its parameter(s). */
-    fun logQuery(tag : String, message : String, sql : String, params : MapSqlParameterSource, vararg remark : String) {
-        loggerService.queryLogger(tag, message, sql, params, DEBUG, remark)
+    fun logQuery(tag: String, message: String, sql: String, params: MapSqlParameterSource, level: LogLevel = DEBUG, vararg remark: String) {
+        loggerService.queryLogger(tag, message, sql, params, level, remark)
     }
 
 }
