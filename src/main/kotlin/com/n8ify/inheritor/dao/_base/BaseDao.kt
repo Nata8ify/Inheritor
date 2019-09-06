@@ -30,9 +30,14 @@ abstract class BaseDao : NamedParameterJdbcDaoSupport() {
 
 
     /** Convenient Function **/
-    /** Generate a flexible <i>IN</i> body by provided parameters on runtime.*/
-    fun constructRuntimeIN(vararg args : Any) : String {
-        return " IN (${args}) "
+    /** Generate <i>MapSqlParameterSource</i> through convenient map shorthand function.
+     */
+    fun mapSqlParameterSourceOf(vararg param : Pair<String, Any?>) : MapSqlParameterSource {
+        return MapSqlParameterSource().apply {
+            param.forEach {param ->
+                this@apply.addValue(param.first, param.second)
+            }
+        }
     }
 
     /** Convenient (Extension) Function **/

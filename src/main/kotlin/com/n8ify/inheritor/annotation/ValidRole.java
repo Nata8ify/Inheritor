@@ -20,6 +20,7 @@ public @interface ValidRole {
     String message() default "Invalid Role";
     Class<?>[] groups()  default {};
     Class<? extends Payload>[] payload() default {};
+
     class ValidRoleImpl implements ConstraintValidator<ValidRole, String> {
 
         private List<String> ROLES = Arrays.asList(RoleConstant.ROLE_ADMIN, RoleConstant.ROLE_USER, RoleConstant.ROLE_ANONYMOUS, RoleConstant.ROLE_DOPPELGÄNGER);
@@ -35,5 +36,6 @@ public @interface ValidRole {
         }
 
     }
+
 }
 

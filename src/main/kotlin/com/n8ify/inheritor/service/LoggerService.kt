@@ -10,6 +10,9 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.stereotype.Service
 import java.util.*
 
+/**
+ * Conceptual Credit : Anuwat.k
+ * */
 @Service
 class LoggerService {
 
@@ -105,6 +108,9 @@ class LoggerService {
         }
     }
 
+    /**
+     * Logger for logging query statement and its parameter(s).
+     * */
     fun queryLogger(tag: String, message: String, query: String, mapParams: MapSqlParameterSource? = null, level: LogLevel, vararg remarks: Any) {
 
         // Step [1] : Create a log body.

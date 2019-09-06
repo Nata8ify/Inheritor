@@ -1,5 +1,9 @@
 package com.n8ify.inheritor.extension
 
+/**
+ * @Author : Wittawat.S
+ *
+ * */
 
 fun <T1 : Any, T2 : Any, R : Any> safeLet(p1: T1?, p2: T2?, block: (T1, T2) -> R?): R? {
     return if (p1 != null && p2 != null) block(p1, p2) else null
@@ -32,14 +36,3 @@ fun <A, B> T(first: A?, second: B?): Pair<A, B>? =
 fun <A, B, C> T(first: A?, second: B?, third: C?): Triple<A, B, C>? =
         if (first == null || second == null || third == null) null
         else Triple(first, second, third)
-
-fun main(args: Array<String>) {
-    val a : String? = "It's A"
-    val b : String? = "It's B"
-
-    T<String, String>(a, b)?.let {
-        println("A, B is not null")
-    } ?: run {
-        println("A or B is null")
-    }
-}

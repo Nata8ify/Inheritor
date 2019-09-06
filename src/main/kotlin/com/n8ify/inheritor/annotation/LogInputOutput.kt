@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 /**
+ * Conceptual Credit : Anuwat.k
  * Annotate a controller's api interface class for logging input, output and time usage detail.
  * */
 @Retention(AnnotationRetention.RUNTIME)

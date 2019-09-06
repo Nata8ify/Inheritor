@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.ResponseStatus
 
+/**
+ * Conceptual Credit : Anuwat.k
+ *
+ * */
+
 @ControllerAdvice
 class ErrorControllerAdvice {
 
@@ -32,6 +37,7 @@ class ErrorControllerAdvice {
 
     /** Error response info generating function for (global) exception which not produced by custom <i>BaseException</i>. */
     fun generateErrorResponseInfo(e: Exception): ResponseInfo {
+        e.printStackTrace()
         return ResponseInfo(
                 requestDescription.id
                 , ResponseInfo.STATUS_ERROR
@@ -42,6 +48,7 @@ class ErrorControllerAdvice {
 
     /** Error response info generating function for (global) exception which produced by custom <i>BaseException</i>. */
     fun generateBaseErrorResponseInfo(be: BaseException): ResponseInfo {
+        be.printStackTrace()
         return ResponseInfo(
                 requestDescription.id
                 , ResponseInfo.STATUS_ERROR
