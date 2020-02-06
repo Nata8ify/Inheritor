@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.n8ify</groupId>
-    <artifactId>inheritor</artifactId>
+    <artifactId>cashstream</artifactId>
     <version>0.0.1</version>
     <name>Inheritor</name>
-    <description>Keep Things as Information Form and Inherit to Someone</description>
+    <description>Stream your financial information</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
